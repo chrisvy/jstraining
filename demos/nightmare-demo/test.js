@@ -25,11 +25,13 @@ describe('test index.html', function() {
       .click('h1')
       .wait(1000)
       .evaluate(function () {
-        return document.querySelector('h1').textContent;
+        let $h1 = document.querySelector('h1');
+        return [$h1.textContent, window.getComputedStyle($h1).getPropertyValue("color")];
       })
       .end()
       .then(function(text) {
-        expect(text).to.equal('Hello Clicked');
+        expect(text[0]).to.equal('Hello Clicked');//不能直接比较数组么
+        expect(text[1]).to.equal('rgb(255, 0, 0)');
         done();
       })
   });
