@@ -8,12 +8,12 @@ var port = process.env.PORT || 8080;
 var router = express.Router();
 
 router.use(function(req, res, next) {
-  console.log('Thers is a requesting.');
+  console.log('Thers is a requesting at ' + new Date() + '.');
   next();
 });
 
 router.get('/', function(req, res) {
-  res.send('<h1>Hello World</h1>');
+  res.send('<h1>Hello ' + req.query.name + '</h1>');
 });
 
 router.get('/:name', function(req, res) {
